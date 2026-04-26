@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { getMinuteStatePomodoro, usePomodoro } from "./hooks/pomodoro.hook"
 import { useTimer } from "./hooks/timer.hook"
+import Button from "./component/Button"
 
 interface TitleProps {
   text: string
@@ -33,7 +34,7 @@ export function Time({ seconds: second }: TimeProps) {
 
 
 export default function App() {
-  const { seconds, action } = useTimer(0)
+  const { seconds, isRunning,  action } = useTimer(0)
   const { goNextFase, pomodoro } = usePomodoro()
 
   const next_time = useCallback(() => {
@@ -53,5 +54,12 @@ export default function App() {
     <Time seconds={seconds} />
     <div>Estado: {pomodoro.state}</div>
     <div>Ciclo: {pomodoro.cycle}</div> 
+    <div className="flex flex-row gap-2">
+      <Button onClick={next_time}
+      text="Siguiente Fase" /> 
+      <Button onClick={isRunning ? action.stop : action.start} 
+      text={isRunning ? "Pausar" : "Reanudar" }/>
+    </div>
+
   </div>)
 }
