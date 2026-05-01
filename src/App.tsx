@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect } from "react"
 import { getMinuteStatePomodoro, usePomodoro } from "./hooks/pomodoro.hook"
 import { useTimer } from "./hooks/timer.hook"
 import Button from "./component/Button"
@@ -7,12 +7,17 @@ import Select from "./component/Select"
 
 interface TitleProps {
   text: string
+  children?: React.ReactNode
 }
 
-export function Title({ text }: TitleProps) {
-  return <h1 className="font-bold text-2xl bg-blue-200 p-2">{text}</h1>
+export function Title({ text, children }: TitleProps) {
+  return (
+    <div className="flex flex-row items-center justify-between bg-primary px-4">
+      <h1 className="font-bold text-2xl bg-primary p-2">{text}</h1>
+      {children}
+    </div>
+  )
 }
-
 
 interface TimeProps {
   seconds: number
@@ -43,7 +48,6 @@ function SelectTheme() {
     value={theme}
     onChange={toggleTheme}
     option={[...themes]}
-    label="Tema"
   />
 }
 
@@ -59,11 +63,6 @@ export function BackgroundApp({ children }: BackgroundAppProps) {
 export default function App() {
   const { seconds, isRunning, action } = useTimer(0)
   const { goNextFase, pomodoro } = usePomodoro()
-  const [modeDark, setModeDark] = useState<boolean>(false);
-
-  const changeMode = () => {
-    setModeDark(prev => !prev)
-  }
 
   const next_time = useCallback(() => {
     goNextFase()
@@ -78,23 +77,19 @@ export default function App() {
     }
     , [seconds, pomodoro.state, next_time])
   return (
-    <BackgroundApp>
-      <div className="block" data-theme={modeDark && "dark"}>
-        <Button onClick={changeMode} text="Cambiar Modo" type="warning" />
-        <Title text="Pomodoro" />
-        <Time seconds={seconds} />
-        <div>Estado: {pomodoro.state}</div>
-        <div>Ciclo: {pomodoro.cycle}</div>
-        <div className="flex flex-row gap-2">
-          <Button onClick={next_time}
-            text="Siguiente Fase" />
-          <Button onClick={isRunning ? action.stop : action.start}
-            text={isRunning ? "Pausar" : "Reanudar"} />
-        </div>
-        <div>
-          <SelectTheme />
-        </div>
-
+    <div className="block">
+      <Title text="Pomodoro" >
+        <SelectTheme />
+      </Title>
+      <Time seconds={seconds} />
+      <div>Estado: {pomodoro.state}</div>
+      <div>Ciclo: {pomodoro.cycle}</div>
+      <div className="flex flex-row gap-2">
+        <Button onClick={next_time}
+          text="Siguiente Fase" />
+        <Button onClick={isRunning ? action.stop : action.start}
+          text={isRunning ? "Pausar" : "Reanudar"} />
       </div>
-    </BackgroundApp>)
+    </div>
+  )
 }
