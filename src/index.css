@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: theme(colors.slate.50);
+  --color-surface: theme(colors.white);
+  --color-primary: theme(colors.blue.600);
+  --color-secondary: theme(colors.violet.600);
+  --color-accent: theme(colors.cyan.500);
+
+  --color-text: theme(colors.slate.900);
+  --color-text-muted: theme(colors.slate.600);
+  --color-border: theme(colors.slate.200);
+
+  --color-success: theme(colors.green.600);
+  --color-warning: theme(colors.amber.500);
+  --color-error: theme(colors.red.600);
+
+  
+}
+
+.dark {
+    --color-background: theme(colors.slate.950);
+    --color-surface: theme(colors.slate.900);
+    --color-primary: theme(colors.blue.500);
+    --color-secondary: theme(colors.violet.500);
+    --color-accent: theme(colors.cyan.400);
+
+    --color-text: theme(colors.slate.200);
+    --color-text-muted: theme(colors.slate.400);
+    --color-border: theme(colors.slate.800);
+
+    --color-success: theme(colors.green.500);
+    --color-warning: theme(colors.amber.400);
+    --color-error: theme(colors.red.500);
+  }
