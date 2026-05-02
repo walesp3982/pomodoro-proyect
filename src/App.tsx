@@ -33,8 +33,8 @@ function formatTime(second: number) {
 
 export function Time({ seconds: second }: TimeProps) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 mt-4 text-4xl font-bold text-gray-700 bg-gray-200 p-4 rounded-lg w-48">
-      <div>{formatTime(second)}</div>
+    <div className="flex flex-col items-center justify-center gap-2 bg-success dark:bg-background rounded-2xl h-full w-full border-success border-2">
+      <div className="text-7xl font-bold text-slate-100 dark:text-text ">{formatTime(second)}</div>
     </div>
   )
 }
@@ -49,15 +49,6 @@ function SelectTheme() {
     onChange={toggleTheme}
     option={[...themes]}
   />
-}
-
-interface BackgroundAppProps {
-  children: React.ReactNode
-}
-export function BackgroundApp({ children }: BackgroundAppProps) {
-  return <div className="bg-[--color-bg]">
-    {children}
-  </div>
 }
 
 export default function App() {
@@ -81,15 +72,25 @@ export default function App() {
       <Title text="Pomodoro" >
         <SelectTheme />
       </Title>
-      <Time seconds={seconds} />
+      <div className="flex flex-col items-center justify-center">
+        <div className="grid grid-cols-4 gap-3 p-3 m-3 min-h-50 max-w-lg min-w-md ">
+          <div className="col-span-3">
+            <Time seconds={seconds} />
+          </div>
+          <div className="col-span-1">
+            <div className="flex flex-col justify-between gap-3">
+              <Button onClick={next_time}
+                text="Siguiente Fase" />
+              <Button onClick={isRunning ? action.stop : action.start}
+                text={isRunning ? "Pausar" : "Reanudar"} />
+            </div>
+          </div>
+
+        </div>
+      </div>
       <div>Estado: {pomodoro.state}</div>
       <div>Ciclo: {pomodoro.cycle}</div>
-      <div className="flex flex-row gap-2">
-        <Button onClick={next_time}
-          text="Siguiente Fase" />
-        <Button onClick={isRunning ? action.stop : action.start}
-          text={isRunning ? "Pausar" : "Reanudar"} />
-      </div>
+
     </div>
   )
 }
