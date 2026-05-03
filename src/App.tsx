@@ -92,14 +92,14 @@ export default function App() {
             </div>
             <div className="col-span-1">
               <div className="flex flex-col justify-between gap-3 h-full">
-                <div className="grid gap-3 ">
+                <div className="flex flex-col gap-3 ">
                   <Button onClick={next_time}
                     text="Siguiente Fase" />
                   <Button onClick={isRunning ? action.stop : action.start}
                     text={isRunning ? "Pausar" : "Reanudar"}
                     type={isRunning ? "success" : "warning"} />
                 </div>
-                <div className="rounded-2xl border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
+                <div className="rounded-md border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
                   <div>Ciclo <br />{pomodoro.cycle} de 4</div>
                 </div>
               </div>
