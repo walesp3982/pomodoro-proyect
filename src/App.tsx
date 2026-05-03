@@ -86,11 +86,11 @@ export default function App() {
           </div>
         </div>
         <div className="w-full max-w-3xl">
-          <div className="grid grid-cols-4 gap-3 p-3 min-h-70 max-w-3xl">
+          <div className="grid grid-cols-5 gap-3 p-3 min-h-70 max-w-3xl">
             <div className="col-span-3">
               <Time seconds={seconds} />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <div className="flex flex-col justify-between gap-3 h-full">
                 <div className="flex flex-col gap-3 ">
                   <Button onClick={next_time}
