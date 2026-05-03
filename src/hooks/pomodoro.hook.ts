@@ -13,6 +13,17 @@ export function getMinuteStatePomodoro(state: PomodoroState): number {
     }
 }
 
+export function getTextPomodoro(state: PomodoroState): string {
+    switch (state) {
+        case "break":
+            return "Descanso"
+        case "long_break":
+            return "Descanso largo"
+        case "work":
+            return "Trabajo"
+    }
+}
+
 function next_pomodoro(state: PomodoroState, cycle: number): PomodoroState {
     if (state == "break" || state == "long_break") {
         return "work"

@@ -1,9 +1,10 @@
 import { useCallback, useEffect } from "react"
-import { getMinuteStatePomodoro, usePomodoro } from "./hooks/pomodoro.hook"
+import { getMinuteStatePomodoro, getTextPomodoro, usePomodoro } from "./hooks/pomodoro.hook"
 import { useTimer } from "./hooks/timer.hook"
 import Button from "./component/Button"
 import useTheme from "./hooks/Theme"
 import Select from "./component/Select"
+import { useAlarm } from "./hooks/useAlarm"
 
 interface TitleProps {
   text: string
@@ -54,11 +55,13 @@ function SelectTheme() {
 export default function App() {
   const { seconds, isRunning, action } = useTimer(0)
   const { goNextFase, pomodoro } = usePomodoro()
+  const { playAlarm } = useAlarm();
 
   const next_time = useCallback(() => {
     goNextFase()
+    playAlarm(pomodoro.state === "work" ? "work" : "break")
     action.reset()
-  }, [goNextFase, action])
+  }, [goNextFase, action, pomodoro.state, playAlarm])
 
   useEffect(
     () => {
@@ -78,20 +81,22 @@ export default function App() {
             <Time seconds={seconds} />
           </div>
           <div className="col-span-1">
-            <div className="flex flex-col justify-between gap-3">
-              <Button onClick={next_time}
-                text="Siguiente Fase" />
-              <Button onClick={isRunning ? action.stop : action.start}
-                text={isRunning ? "Pausar" : "Reanudar"}
-                type={isRunning ?  "success": "warning"} />
+            <div className="flex flex-col justify-between gap-3 h-full">
+              <div className="grid gap-3 ">
+                <Button onClick={next_time}
+                  text="Siguiente Fase" />
+                <Button onClick={isRunning ? action.stop : action.start}
+                  text={isRunning ? "Pausar" : "Reanudar"}
+                  type={isRunning ? "success" : "warning"} />
+              </div>
+              <div className="rounded-2xl border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
+                <div>{getTextPomodoro(pomodoro.state)}</div>
+                <div>Ciclo {pomodoro.cycle} de 4</div>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
-      <div>Estado: {pomodoro.state}</div>
-      <div>Ciclo: {pomodoro.cycle}</div>
-
     </div>
   )
 }
