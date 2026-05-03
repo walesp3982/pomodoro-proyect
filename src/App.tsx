@@ -76,7 +76,7 @@ export default function App() {
         <SelectTheme />
       </Title>
       <div className="flex flex-col items-center justify-center">
-        <div className="grid grid-cols-4 gap-3 p-3 m-3 min-h-70 max-w-3xl">
+        <div className="grid grid-cols-4 gap-3 p-3 min-h-70 max-w-3xl">
           <div className="col-span-3">
             <Time seconds={seconds} />
           </div>
@@ -90,13 +90,20 @@ export default function App() {
                   type={isRunning ? "success" : "warning"} />
               </div>
               <div className="rounded-2xl border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
-                <div>{getTextPomodoro(pomodoro.state)}</div>
-                <div>Ciclo {pomodoro.cycle} de 4</div>
+                <div>Ciclo <br />{pomodoro.cycle} de 4</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="flex flex-row rounded-2xl border-2 border-orange-500 bg-orange-500 mx-3 mt-5 p-5 dark:bg-transparent dark:border-orange-400">
+        <div className="flex flex-row justify-between w-full items-center text-2xl font-bold text-slate-100 dark:text-text">
+          <div className="dark:text-orange-400">ETAPA: </div>
+          <div>{getTextPomodoro(pomodoro.state)}</div>
+        </div>
+      </div>
+
+
     </div>
   )
 }
