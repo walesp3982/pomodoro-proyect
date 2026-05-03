@@ -75,33 +75,41 @@ export default function App() {
       <Title text="Pomodoro" >
         <SelectTheme />
       </Title>
-      <div className="flex flex-col items-center justify-center">
-        <div className="grid grid-cols-4 gap-3 p-3 min-h-70 max-w-3xl">
-          <div className="col-span-3">
-            <Time seconds={seconds} />
+      <div className="mt-5">
+
+      </div>
+      <div className="flex flex-col gap-4 items-center px-4">
+        <div className="flex flex-row rounded-2xl justify-center items-center border-2 border-orange-500 bg-orange-500 max-w-3xl w-full p-5 dark:bg-transparent dark:border-orange-400">
+          <div className="flex flex-row justify-between w-full items-center text-2xl font-bold text-slate-100 dark:text-text">
+            <div className="dark:text-orange-400">ETAPA: </div>
+            <div>{getTextPomodoro(pomodoro.state)}</div>
           </div>
-          <div className="col-span-1">
-            <div className="flex flex-col justify-between gap-3 h-full">
-              <div className="grid gap-3 ">
-                <Button onClick={next_time}
-                  text="Siguiente Fase" />
-                <Button onClick={isRunning ? action.stop : action.start}
-                  text={isRunning ? "Pausar" : "Reanudar"}
-                  type={isRunning ? "success" : "warning"} />
-              </div>
-              <div className="rounded-2xl border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
-                <div>Ciclo <br />{pomodoro.cycle} de 4</div>
+        </div>
+        <div className="w-full max-w-3xl">
+          <div className="grid grid-cols-4 gap-3 p-3 min-h-70 max-w-3xl">
+            <div className="col-span-3">
+              <Time seconds={seconds} />
+            </div>
+            <div className="col-span-1">
+              <div className="flex flex-col justify-between gap-3 h-full">
+                <div className="grid gap-3 ">
+                  <Button onClick={next_time}
+                    text="Siguiente Fase" />
+                  <Button onClick={isRunning ? action.stop : action.start}
+                    text={isRunning ? "Pausar" : "Reanudar"}
+                    type={isRunning ? "success" : "warning"} />
+                </div>
+                <div className="rounded-2xl border-2 border-transparent text-slate-100 font-bold bg-purple-500 p-2 dark:bg-background dark:border-purple-500">
+                  <div>Ciclo <br />{pomodoro.cycle} de 4</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-row rounded-2xl border-2 border-orange-500 bg-orange-500 mx-3 mt-5 p-5 dark:bg-transparent dark:border-orange-400">
-        <div className="flex flex-row justify-between w-full items-center text-2xl font-bold text-slate-100 dark:text-text">
-          <div className="dark:text-orange-400">ETAPA: </div>
-          <div>{getTextPomodoro(pomodoro.state)}</div>
-        </div>
-      </div>
+
+
+
 
 
     </div>
