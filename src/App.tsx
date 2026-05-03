@@ -73,7 +73,7 @@ export default function App() {
         <SelectTheme />
       </Title>
       <div className="flex flex-col items-center justify-center">
-        <div className="grid grid-cols-4 gap-3 p-3 m-3 min-h-50 max-w-lg min-w-md ">
+        <div className="grid grid-cols-4 gap-3 p-3 m-3 min-h-70 max-w-3xl">
           <div className="col-span-3">
             <Time seconds={seconds} />
           </div>
@@ -82,7 +82,8 @@ export default function App() {
               <Button onClick={next_time}
                 text="Siguiente Fase" />
               <Button onClick={isRunning ? action.stop : action.start}
-                text={isRunning ? "Pausar" : "Reanudar"} />
+                text={isRunning ? "Pausar" : "Reanudar"}
+                type={isRunning ?  "success": "warning"} />
             </div>
           </div>
 

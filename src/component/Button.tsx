@@ -1,8 +1,8 @@
 const TypeButton = {  
-  danger: "bg-red-500 hover:bg-red-700 active:bg-red-900",
-  primary: "bg-blue-500 hover:bg-blue-700 active:bg-blue-900",
-  success: "bg-green-500 hover:bg-green-700 active:bg-green-900",
-  warning: "bg-yellow-500 hover:bg-yellow-700 active:bg-yellow-900",
+  danger: "bg-red-500 hover:bg-red-700 active:bg-red-900 dark:bg-background dark:border-red-700 dark:active:bg-red-900",
+  primary: "bg-blue-500 hover:bg-blue-700 active:bg-blue-900 dark:bg-background dark:border-blue-700 dark:active:bg-blue-900",
+  success: "bg-green-500 hover:bg-green-700 active:bg-green-900 dark:bg-background dark:border-green-700 dark:active:bg-green-900",
+  warning: "bg-yellow-500 hover:bg-yellow-700 active:bg-yellow-900 dark:bg-background dark:border-yellow-700 dark:active:bg-yellow-900",
 } as const
 
 interface ButtonProps {
